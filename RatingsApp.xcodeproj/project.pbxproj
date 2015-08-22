@@ -30,6 +30,9 @@
 		842D32481B88D6A40042AA01 /* ui-bg_highlight-soft_75_cccccc_1x100.png in Resources */ = {isa = PBXBuildFile; fileRef = 842D32351B88D6A40042AA01 /* ui-bg_highlight-soft_75_cccccc_1x100.png */; };
 		842D32491B88D6A40042AA01 /* view-results.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 842D32361B88D6A40042AA01 /* view-results.jpg */; };
 		842D324A1B88D6A40042AA01 /* view-results.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 842D32361B88D6A40042AA01 /* view-results.jpg */; };
+		842D324D1B88E0900042AA01 /* ProductListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D324C1B88E0900042AA01 /* ProductListViewController.m */; };
+		842D32501B88E8440042AA01 /* RatingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D324F1B88E8440042AA01 /* RatingsViewController.m */; };
+		842D32531B88E8580042AA01 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D32521B88E8580042AA01 /* ResultsViewController.m */; };
 		84BE66AD1B88BD590008F33E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE66AC1B88BD590008F33E /* main.m */; };
 		84BE66B01B88BD590008F33E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE66AF1B88BD590008F33E /* AppDelegate.m */; };
 		84BE66B31B88BD590008F33E /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BE66B21B88BD590008F33E /* SignInViewController.m */; };
@@ -62,6 +65,12 @@
 		842D32341B88D6A40042AA01 /* ui-bg_glass_75_e6e6e6_1x400.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-bg_glass_75_e6e6e6_1x400.png"; sourceTree = "<group>"; };
 		842D32351B88D6A40042AA01 /* ui-bg_highlight-soft_75_cccccc_1x100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ui-bg_highlight-soft_75_cccccc_1x100.png"; sourceTree = "<group>"; };
 		842D32361B88D6A40042AA01 /* view-results.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "view-results.jpg"; sourceTree = "<group>"; };
+		842D324B1B88E0900042AA01 /* ProductListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListViewController.h; sourceTree = "<group>"; };
+		842D324C1B88E0900042AA01 /* ProductListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListViewController.m; sourceTree = "<group>"; };
+		842D324E1B88E8440042AA01 /* RatingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingsViewController.h; sourceTree = "<group>"; };
+		842D324F1B88E8440042AA01 /* RatingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingsViewController.m; sourceTree = "<group>"; };
+		842D32511B88E8580042AA01 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
+		842D32521B88E8580042AA01 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		84BE66A71B88BD590008F33E /* RatingsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RatingsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84BE66AB1B88BD590008F33E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84BE66AC1B88BD590008F33E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -142,6 +151,12 @@
 				84BE66AF1B88BD590008F33E /* AppDelegate.m */,
 				84BE66B11B88BD590008F33E /* SignInViewController.h */,
 				84BE66B21B88BD590008F33E /* SignInViewController.m */,
+				842D324B1B88E0900042AA01 /* ProductListViewController.h */,
+				842D324C1B88E0900042AA01 /* ProductListViewController.m */,
+				842D324E1B88E8440042AA01 /* RatingsViewController.h */,
+				842D324F1B88E8440042AA01 /* RatingsViewController.m */,
+				842D32511B88E8580042AA01 /* ResultsViewController.h */,
+				842D32521B88E8580042AA01 /* ResultsViewController.m */,
 				84BE66B41B88BD590008F33E /* Main.storyboard */,
 				84BE66B71B88BD590008F33E /* Images.xcassets */,
 				84BE66B91B88BD590008F33E /* LaunchScreen.xib */,
@@ -353,7 +368,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				84BE66B31B88BD590008F33E /* SignInViewController.m in Sources */,
+				842D32501B88E8440042AA01 /* RatingsViewController.m in Sources */,
 				84BE66B01B88BD590008F33E /* AppDelegate.m in Sources */,
+				842D32531B88E8580042AA01 /* ResultsViewController.m in Sources */,
+				842D324D1B88E0900042AA01 /* ProductListViewController.m in Sources */,
 				84BE66AD1B88BD590008F33E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

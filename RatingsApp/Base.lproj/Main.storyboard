@@ -6,7 +6,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Sign In View Controller-->
+        <!--Sign In-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="SignInViewController" sceneMemberID="viewController">
@@ -26,27 +26,32 @@
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="AcA-3w-pk7"/>
-                                    <constraint firstAttribute="width" constant="80" id="MyL-x3-sVu"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="40"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SignIn with Google" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K9C-vO-Qx3">
+                                <rect key="frame" x="60" y="160" width="200" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JhI-7B-sf5" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailing" multiplier="200/320" id="9sl-nV-2EJ"/>
+                            <constraint firstItem="K9C-vO-Qx3" firstAttribute="top" secondItem="2fi-mo-0CV" secondAttribute="top" multiplier="160/504" id="ErW-Uv-LRe"/>
                             <constraint firstItem="JhI-7B-sf5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="trailing" multiplier="120/320" id="JFe-3p-ABN"/>
                             <constraint firstItem="JhI-7B-sf5" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" multiplier="424/504" id="OCr-Kn-tdq"/>
+                            <constraint firstItem="K9C-vO-Qx3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="trailing" multiplier="60/320" id="ZYi-3J-9gc"/>
                             <constraint firstItem="JhI-7B-sf5" firstAttribute="top" secondItem="2fi-mo-0CV" secondAttribute="top" multiplier="344/504" id="o3e-SV-7fc"/>
+                            <constraint firstItem="K9C-vO-Qx3" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailing" multiplier="260/320" id="urU-se-dYZ"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="CvW-JH-pmH"/>
+                    <navigationItem key="navigationItem" title="Sign In" id="CvW-JH-pmH"/>
                     <connections>
                         <outlet property="signInButton" destination="JhI-7B-sf5" id="UOj-v6-9Lu"/>
                         <outlet property="signInImage" destination="9hA-o9-Grl" id="vvQ-GT-S3o"/>
@@ -56,10 +61,151 @@
             </objects>
             <point key="canvasLocation" x="703" y="305"/>
         </scene>
+        <!--Products-->
+        <scene sceneID="x8b-0F-l7H">
+            <objects>
+                <tableViewController id="5na-lg-ud2" customClass="ProductListViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0zj-GC-ybZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="plZ-PC-ALa">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="plZ-PC-ALa" id="6ch-g2-CgQ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="HzW-zB-uQE" kind="push" id="VfS-ms-Abp"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5na-lg-ud2" id="mmo-gk-Kti"/>
+                            <outlet property="delegate" destination="5na-lg-ud2" id="cb9-kB-aFV"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Products" id="y2R-ya-jf2">
+                        <barButtonItem key="leftBarButtonItem" title="Results" id="7bw-xm-eXj">
+                            <connections>
+                                <segue destination="bWG-7S-qC4" kind="push" id="6IW-9l-feh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="SignOut" id="AE4-4E-dMH"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sai-mQ-aZa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="703" y="1027"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="gBj-0C-m0l">
+            <objects>
+                <viewController id="HzW-zB-uQE" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7bo-uP-397"/>
+                        <viewControllerLayoutGuide type="bottom" id="xP1-oT-EyY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fIK-Nb-AGY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="aFH-Ww-hyT">
+                                <rect key="frame" x="101" y="117" width="118" height="31"/>
+                            </slider>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4mP-bc-4W8">
+                                <rect key="frame" x="40" y="220" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PfO-tw-rLR">
+                                <rect key="frame" x="137" y="369" width="46" height="30"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwF-vm-buZ">
+                                <rect key="frame" x="139" y="177" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppB-of-gMT">
+                                <rect key="frame" x="137" y="427" width="46" height="30"/>
+                                <state key="normal" title="Results">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="bWG-7S-qC4" kind="push" id="FgB-hn-ubJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="7hH-LG-PhC">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="xoc-UU-BOH"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P4V-uE-KMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1152" y="1027"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="keT-ac-5xo">
+            <objects>
+                <viewController id="bWG-7S-qC4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sYW-r4-GFO"/>
+                        <viewControllerLayoutGuide type="bottom" id="RTv-Oq-ch7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1Do-kd-6H3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gpv-IH-Z0n">
+                                <rect key="frame" x="137" y="320" width="46" height="30"/>
+                                <state key="normal" title="Rate Products">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="3Wj-4b-PB9" kind="unwind" unwindAction="rate:" id="d8z-Id-TPx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="osO-T9-Dqf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cdP-5A-rG9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3Wj-4b-PB9" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1626" y="1027"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="B9f-fx-0FE">
+            <objects>
+                <navigationController storyboardIdentifier="Ratings" id="K3c-xq-00P" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="95T-G0-M82">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5na-lg-ud2" kind="relationship" relationship="rootViewController" id="WtM-iV-3LQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I13-Be-lep" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="171" y="1027"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Oqr-d1-Lul">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lZJ-GI-MJp" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SignIn" automaticallyAdjustsScrollViewInsets="NO" id="lZJ-GI-MJp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0qX-u7-JBA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -83,4 +229,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="FgB-hn-ubJ"/>
+    </inferredMetricsTieBreakers>
 </document>
