@@ -34,6 +34,8 @@ static NSString *const RATING_SEGUE = @"rateProduct";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.tableView.estimatedRowHeight = 2.0;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -43,6 +45,10 @@ static NSString *const RATING_SEGUE = @"rateProduct";
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [products count];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 151.0;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

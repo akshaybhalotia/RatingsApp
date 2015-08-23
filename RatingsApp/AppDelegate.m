@@ -56,23 +56,30 @@
 
 - (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
     // Perform any operations on signed in user here.
-    self.userEmail = user.profile.email;
-    // ...
-    UINavigationController *ratings = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Ratings"];
-    [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^(){
-        self.window.rootViewController = ratings;
-    } completion:nil];
+    if (user) {
+        self.userEmail = user.profile.email;
+        
+        UINavigationController *ratings = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Ratings"];
+        [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^(){
+            self.window.rootViewController = ratings;
+        } completion:nil];
+    }
 }
 
 - (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error {
     // Perform any operations when the user disconnects from app here.
     // ...
+    [[GIDSignIn sharedInstance] signOut];
+    UINavigationController *signInVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignIn"];
+    [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^(){
+        self.window.rootViewController = signInVC;
+    } completion:nil];
 }
 
 -(void)userDidSignOut {
     [[GIDSignIn sharedInstance] signOut];
     UINavigationController *signIn = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignIn"];
-    [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionCurveEaseOut animations:^(){
+    [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionTransitionFlipFromRight animations:^(){
         self.window.rootViewController = signIn;
     } completion:nil];
 }

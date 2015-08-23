@@ -10,7 +10,11 @@
 #import "RatingsDBHandler.h"
 #import "AppDelegate.h"
 
-@interface RatingsViewController () <UITextViewDelegate>
+@interface RatingsViewController () <UITextViewDelegate, UIGestureRecognizerDelegate> {
+    UITextView *activeField;
+    UITapGestureRecognizer *tapGesture;
+}
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UILabel *productNameLabel;
 @property (strong, nonatomic) IBOutlet UISlider *ratingSlider;
 @property (strong, nonatomic) IBOutlet UILabel *ratingLabel;
@@ -23,11 +27,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    if(!tapGesture)
+    {
+        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(enableEndEditing)];
+    }
+    
+    // Sets parameters for the Tap Gesture Recognizer and adds it to the view.
+    tapGesture.cancelsTouchesInView = NO;
+    tapGesture.delegate = self;
+    tapGesture.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tapGesture];
+    
+    self.suggestionBox.layer.borderColor = [[UIColor grayColor] CGColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     self.productNameLabel.text = self.productName;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (IBAction)ratingChanged:(id)sender {
@@ -65,6 +86,7 @@
         textView.text = @"";
         textView.textColor = [UIColor blackColor];
     }
+    activeField = textView;
     [textView becomeFirstResponder];
 }
 
@@ -73,7 +95,53 @@
         textView.text = @"Suggestions...";
         textView.textColor = [UIColor lightGrayColor];
     }
+    activeField = nil;
     [textView resignFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    // Unregister the view for keyboard notifications.
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWasShown:(NSNotification *)aNotification
+{
+    // scroll to the text view
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height + 10, 0.0);
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible.
+    // Your app might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    CGRect thisFrame = [activeField.superview convertRect:activeField.frame toView:self.view];
+    if (!CGRectContainsPoint(aRect, thisFrame.origin) ) {
+        [self.scrollView scrollRectToVisible:activeField.frame animated:YES];
+    }
+}
+
+- (void)keyboardWillBeHidden:(NSNotification *)aNotification
+{
+    // scroll back..
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.scrollView.contentInset = contentInsets;
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+}
+
+- (void)enableEndEditing
+{
+    [self.view endEditing:YES];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {

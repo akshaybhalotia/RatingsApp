@@ -39,6 +39,7 @@ static NSString *const RATING_CELL_IDENTIFIER = @"RatingCell";
     NSArray *products;
     NSMutableArray *feedbacks;
 }
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -47,6 +48,8 @@ static NSString *const RATING_CELL_IDENTIFIER = @"RatingCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableView.estimatedRowHeight = 2.0;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -70,19 +73,56 @@ static NSString *const RATING_CELL_IDENTIFIER = @"RatingCell";
     }
     else {
         RatingListCell *cell = [tableView dequeueReusableCellWithIdentifier:RATING_CELL_IDENTIFIER forIndexPath:indexPath];
-        cell.productNameLabel.text = ((FeedbackPerProduct *)feedbacks[indexPath.row]).productName;
-        cell.MTDRating.text = [NSString stringWithFormat:@"%f", ((FeedbackPerProduct *)feedbacks[indexPath.row]).MTD];
-        cell.YTDRating.text = [NSString stringWithFormat:@"%f", ((FeedbackPerProduct *)feedbacks[indexPath.row]).YTD];
+        cell.productNameLabel.text = ((FeedbackPerProduct *)feedbacks[indexPath.row - 1]).productName;
+        cell.MTDRating.text = [NSString stringWithFormat:@"%.02f", ((FeedbackPerProduct *)feedbacks[indexPath.row - 1]).MTD];
+        cell.YTDRating.text = [NSString stringWithFormat:@"%.02f", ((FeedbackPerProduct *)feedbacks[indexPath.row - 1]).YTD];
         return cell;
     }
 }
 
 - (void)calculateFeedBackPerProduct {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MMM-yyyy"];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comp = [gregorian components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:[NSDate date]];
+    [comp setDay:1];
+    NSDate *firstDayOfMonthDate = [gregorian dateFromComponents:comp];
+    [comp setMonth:1];
+    NSDate *firstDayOfYearDate = [gregorian dateFromComponents:comp];
+    
     for (Product *thisProduct in products) {
         FeedbackPerProduct *feedbackForProduct = [FeedbackPerProduct new];
         feedbackForProduct.productName = thisProduct.productName;
         NSArray *listOfFeedbacks = [[RatingsDBHandler database] searchFeedbackInfoForID:thisProduct.productID];
-        
+        int MTDCounter = 0;
+        float MTDAccumulator = 0.0;
+        int YTDCounter = 0;
+        float YTDAccumulator = 0.0;
+        for (Feedback *thisFeedback in listOfFeedbacks) {
+            NSDate *feedbackDate = [dateFormatter dateFromString:thisFeedback.ratingDate];
+            if ([firstDayOfMonthDate compare:feedbackDate] == NSOrderedAscending) {
+                MTDAccumulator += thisFeedback.productRating;
+                MTDCounter++;
+            }
+            if ([firstDayOfYearDate compare:feedbackDate] == NSOrderedAscending) {
+                YTDAccumulator += thisFeedback.productRating;
+                YTDCounter++;
+            }
+        }
+        if (MTDCounter) {
+            feedbackForProduct.MTD = MTDAccumulator / MTDCounter;
+        }
+        else {
+            feedbackForProduct.MTD = 0.0;
+        }
+        if (YTDCounter) {
+            feedbackForProduct.YTD = YTDAccumulator / YTDCounter;
+        }
+        else {
+            feedbackForProduct.YTD = 0.0;
+        }
+        [feedbacks addObject:feedbackForProduct];
     }
 }
 

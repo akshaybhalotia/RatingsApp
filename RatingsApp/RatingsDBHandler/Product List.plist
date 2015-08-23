@@ -4,33 +4,33 @@
 <array>
 	<dict>
 		<key>productID</key>
-		<string></string>
+		<string>PID1</string>
 		<key>productName</key>
-		<string></string>
+		<string>Product 1</string>
 	</dict>
 	<dict>
 		<key>productID</key>
-		<string></string>
+		<string>PID2</string>
 		<key>productName</key>
-		<string></string>
+		<string>Product 2</string>
 	</dict>
 	<dict>
 		<key>productID</key>
-		<string></string>
+		<string>PID3</string>
 		<key>productName</key>
-		<string></string>
+		<string>Product 3</string>
 	</dict>
 	<dict>
 		<key>productID</key>
-		<string></string>
+		<string>PID4</string>
 		<key>productName</key>
-		<string></string>
+		<string>Product 4</string>
 	</dict>
 	<dict>
 		<key>productID</key>
-		<string></string>
+		<string>PID5</string>
 		<key>productName</key>
-		<string></string>
+		<string>Product 5</string>
 	</dict>
 </array>
 </plist>
