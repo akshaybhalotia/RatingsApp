@@ -56,10 +56,7 @@
 
 - (void)signIn:(GIDSignIn *)signIn didSignInForUser:(GIDGoogleUser *)user withError:(NSError *)error {
     // Perform any operations on signed in user here.
-    NSString *userId = user.userID;                  // For client-side use only!
-    NSString *idToken = user.authentication.idToken; // Safe to send to the server
-    NSString *name = user.profile.name;
-    NSString *email = user.profile.email;
+    self.userEmail = user.profile.email;
     // ...
     UINavigationController *ratings = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Ratings"];
     [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^(){

@@ -10,4 +10,7 @@
 
 @interface RatingsViewController : UIViewController
 
+@property NSString *productID;
+@property NSString *productName;
+
 @end
