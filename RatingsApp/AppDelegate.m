@@ -61,11 +61,23 @@
     NSString *name = user.profile.name;
     NSString *email = user.profile.email;
     // ...
+    UINavigationController *ratings = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"Ratings"];
+    [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^(){
+        self.window.rootViewController = ratings;
+    } completion:nil];
 }
 
 - (void)signIn:(GIDSignIn *)signIn didDisconnectWithUser:(GIDGoogleUser *)user withError:(NSError *)error {
     // Perform any operations when the user disconnects from app here.
     // ...
+}
+
+-(void)userDidSignOut {
+    [[GIDSignIn sharedInstance] signOut];
+    UINavigationController *signIn = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SignIn"];
+    [UIView transitionWithView:self.window duration:0.5 options:UIViewAnimationOptionCurveEaseOut animations:^(){
+        self.window.rootViewController = signIn;
+    } completion:nil];
 }
 
 @end

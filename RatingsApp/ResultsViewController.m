@@ -8,7 +8,21 @@
 
 #import "ResultsViewController.h"
 
-@interface ResultsViewController ()
+static NSString *const HEADER_CELL_IDENTIFIER = @"HeaderCell";
+static NSString *const RATING_CELL_IDENTIFIER = @"RatingCell";
+
+@interface RatingListCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *productName;
+@property (strong, nonatomic) IBOutlet UILabel *MTDRating;
+@property (strong, nonatomic) IBOutlet UILabel *YTDRating;
+
+@end
+
+@implementation RatingListCell
+
+@end
+
+@interface ResultsViewController () <UITableViewDataSource>
 
 @end
 
@@ -24,14 +38,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
 }
-*/
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
 
 @end

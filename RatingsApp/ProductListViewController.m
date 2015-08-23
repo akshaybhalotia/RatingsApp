@@ -7,6 +7,19 @@
 //
 
 #import "ProductListViewController.h"
+#import "AppDelegate.h"
+
+static NSString *const PRODUCT_CELL_IDENTIFIER = @"ProductCell";
+static NSString *const RATING_SEGUE = @"rateProduct";
+
+@interface ProductListCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *productName;
+
+@end
+
+@implementation ProductListCell
+
+@end
 
 @interface ProductListViewController ()
 
@@ -19,19 +32,27 @@
     // Do any additional setup after loading the view.
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:RATING_SEGUE]) {
+        
+    }
+}
+
+- (IBAction)signOutClicked:(id)sender {
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] userDidSignOut];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
